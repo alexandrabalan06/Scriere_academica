@@ -3,28 +3,20 @@ Acest proiect reprezintă un studiu de performanță pentru 5 dintre cei mai cun
 
 Cronometrare de înaltă precizie:
 
-Am folosit biblioteca chrono (mai exact high_resolution_clock) pentru a măsura cu exactitate timpii de execuție. Rezultatele au fost convertite și afișate uniform în milisecunde (ms), cu o precizie de 4 zecimale.
+Am folosit biblioteca chrono (mai exact high_resolution_clock) pentru a măsura cu exactitate timpii de execuție. Rezultatele au fost convertite și afișate în milisecunde (ms), cu o precizie de 4 zecimale. Toți vectorii au fost alocați dinamic pentru a evita erorile de tip "Stack Overflow" la seturi masive de date (ex. 1.000.000 elemente). Numerele aleatoare sunt generate folosind o sămânță fixă. Astfel, setul de date este 100% identic la fiecare rulare, având o comparație corectă.
 
-Toți vectorii au fost alocați dinamic pentru a evita erorile de tip "Stack Overflow" la seturi masive de date (ex. 1.000.000 elemente)
-
-Numerele aleatoare sunt generate folosind o sămânță fixă. Astfel, setul de date este 100% identic la fiecare rulare, având o comparație perfect echitabilă.
-
-Optimizări Custom:
-
+Am implementat algoritmii folosind câteva optimizări: 
 "Bubble Sort" a fost optimizat pentru a parcurge lista o singură dată în cazul unei liste deja sortate.
-
 "Quick Sort" utilizează pivotul din mijloc pentru a preveni worst-case-ul O(n^2) pe listele invers sortate. 
 
- 
-Rezultatele Testelor
-
+ Rezultatele Testelor
 Testele au fost rulate pentru 3 cazuri distincte:
 1. Numere complet aleatoare.
 2. Listă deja sortată crescător.
 3. Listă sortată descrescător (inversată).
 
-Testul 1: Liste Mici (n = 100 elemente)
-Pe seturi foarte mici de date, algoritmii simpli sunt adesea mai eficienți din cauza "overhead-ului" (costul de structură și apeluri recursive) prezent la algoritmii complecși.
+Testul 1: Liste mici (n = 100 elemente)
+Pe seturi foarte mici de date, algoritmii simpli sunt adesea mai eficienți din cauza "overhead-ului" (de ex. apelurile recursive la QuickSort sau alocarea de memorie la MergeSort) prezent la algoritmii complecși.
 
 |    Algoritm     |     Aleator  | Crescător  | Descrescător |
 |-----------------|--------------|------------|--------------|
@@ -70,9 +62,9 @@ n = 1.000.000 elemente
 | **Merge Sort** | 346.2269 ms     | 234.6862 ms    | 222.0082 ms    |
 | **Quick Sort** |  *198.8193 ms*  | *71.4851 ms*   |  *81.4734 ms*  |
 
-Concluzii Majore
+Concluzii finale:
 
 1. Pe seturi foarte mici de date algoritmii simpli (Insertion Sort) sunt mai eficienți decât cei complecși, deoarece nu consumă timp cu apeluri recursive și alocare de memorie.
-2. Optimizările salvează vieți: Implementarea condiției de oprire la Bubble Sort i-a transformat complexitatea din O(n^2) în O(n) pentru cel mai bun caz, executând o listă de 100.000 elemente în doar 0.24 ms.
-3. Selection Sort execută mereu același număr de comparații matematice indiferent de starea inițială a listei, dovedind o rigiditate absolută în execuție.
+2. Optimizările sunt foarte benefice: Implementarea condiției de oprire la Bubble Sort i-a transformat complexitatea din O(n^2) în O(n) pentru cel mai bun caz, executând o listă de 100.000 elemente în doar 0.24 ms.
+3. Selection Sort execută mereu același număr de comparații matematice indiferent de starea inițială a listei, remarcându-se un timp similar la fiecare tip de testare.
 4. La nivelul de 1 milion de elemente, deși atât Merge Sort cât și Quick Sort sunt algoritmi O(nlog(n)), `Quick Sort` a fost de aproape două ori mai rapid.
