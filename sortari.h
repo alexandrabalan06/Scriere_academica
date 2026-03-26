@@ -21,10 +21,10 @@ void insertionsort(int v[], int n) {
         key=v[i];
         j=i-1;
         while(j>=0&&v[j]>key) {
-            v[j+1] = v[j];
+            v[j+1]=v[j];
             j--;
         }
-        v[j+1] = key;
+        v[j+1]=key;
     }
 }
 void selectionSort(int v[],int n)
@@ -85,10 +85,12 @@ void interclasare(int v[],int s,int m,int d)
         j++;
         k++;
     }
+    delete L[];
+    delete R[];
 }
 void mergesort(int v[],int s,int d)
  {      if (s<d)
-    {   int m=s+(d-s)/2;
+    {   int m=(s+d)/2;
         mergesort(v,s,m);
         mergesort(v,m+1,d);
         interclasare(v,s,m,d);
@@ -97,7 +99,7 @@ void mergesort(int v[],int s,int d)
 
 void quicksort(int v[],int st,int dr)
  {    if(st<dr)
-  {     int mijloc=st+(dr-st)/2;
+  {     int mijloc=(st+dr)/2;
         swap(v[mijloc], v[dr]);
         int pivot=v[dr];
         int i=st-1;
