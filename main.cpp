@@ -22,6 +22,7 @@ int main() {
     int* vselection=new int[n];
     int* vmerge=new int[n];
     int* vquick=new int[n];
+    int* vcounting=new int[n];
 
     srand(1);
 
@@ -40,6 +41,7 @@ int main() {
         vselection[i]=nr;
         vmerge[i]=nr;
         vquick[i]=nr;
+        vcounting[i]=nr;
     }
 
 
@@ -49,21 +51,21 @@ int main() {
 
     // timp bubble sort
     start = chrono::high_resolution_clock::now();
-    //bubblesort(vbubble, n);
+    bubblesort(vbubble, n);
     end = chrono::high_resolution_clock::now();
     durata = end - start;
     double t_bubble = durata.count();
 
     // timp insertion sort
     start = chrono::high_resolution_clock::now();
-    //insertionsort(vinsertion, n);
+    insertionsort(vinsertion, n);
     end = chrono::high_resolution_clock::now();
     durata = end - start;
     double t_insertion = durata.count();
 
     // timp selection sort
     start = chrono::high_resolution_clock::now();
-    //selectionSort(vselection, n);
+    selectionSort(vselection, n);
     end = chrono::high_resolution_clock::now();
     durata = end - start;
     double t_selection = durata.count();
@@ -81,6 +83,13 @@ int main() {
     end = chrono::high_resolution_clock::now();
     durata = end - start;
     double t_quick = durata.count();
+    
+    //timp countingsort
+    start = chrono::high_resolution_clock::now();
+    countingSort(vcounting, n);
+    end = chrono::high_resolution_clock::now();
+    durata=end - start;
+    double t_counting = durata.count();
 
     cout<<fixed<<setprecision(4);
     cout << "rezultate("<<n<<" elemente)\n";
@@ -98,6 +107,8 @@ int main() {
     cout<< "Merge Sort-timp: " << t_merge << " ms\n";
     cout<< "Quick Sort-timp: " << t_quick << " ms\n";
     cout<< "---------------------------------------------------------\n";
+    cout<< "ALGORITMI O(n+k):\n";
+    cout << "Counting Sort-timp: " << t_counting << " ms\n";
 
     // eliberarea memoriei
     delete[] vbubble;
@@ -105,6 +116,6 @@ int main() {
     delete[] vselection;
     delete[] vmerge;
     delete[] vquick;
-
+    delete[] vcounting;
     return 0;
 }
