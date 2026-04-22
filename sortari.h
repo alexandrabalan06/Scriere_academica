@@ -115,4 +115,29 @@ void quicksort(int v[],int st,int dr)
         quicksort(v,pi+1,dr);
     }
 }
+void countingSort(int v[], int n)
+{
+    if(n==0)
+        return;
+    int mx=v[0];
+    for(int i=1;i<n;i++)
+       if(v[i]>mx)
+    {
+        mx=v[i];
+    }
+    int* fr=new int[mx+1]();
+    for(int i=0;i<n;i++)
+        {
+            fr[v[i]]++;
+        }
+    int idx=0;
+    for(int i=0;i<=mx;i++)
+        {
+            while(fr[i]-->0)
+            {
+                v[idx++]=i;
+            }
+        }
+        delete []fr;
+}
 
