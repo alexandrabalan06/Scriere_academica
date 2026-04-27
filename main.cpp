@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iomanip>
 #include <cstdlib>
-#include "sortari.h"
+#include "sortare.h"
 
 using namespace std;
 
@@ -15,6 +15,8 @@ int main() {
     cout<< "1. Numere aleatoare \n";
     cout<< "2. Lista crescatoare\n";
     cout<< "3. Lista descrescatoare \n";
+    cout<< "4. Lista aproape sortata \n";
+    cout<< "5. Lista cu multe duplicate \n";
     cin>>tip;
 
     int* vbubble=new int[n];
@@ -35,6 +37,10 @@ int main() {
          if(tip==2) nr=i+1;
         else
          if(tip==3) nr=n-i;
+        else
+         if(tip==4) nr=i+1;
+        else
+         if(tip==5) nr=rand()%10;
 
         vbubble[i]=nr;
         vinsertion[i]=nr;
@@ -42,6 +48,20 @@ int main() {
         vmerge[i]=nr;
         vquick[i]=nr;
         vcounting[i]=nr;
+    }
+    if (tip==4)
+    {
+        int nr_interschimb=n*0.05,poz1,poz2;
+        for(int k=0;k<nr_interschimb;k++)
+        {  poz1=rand()%n;
+           poz2=rand()%n;
+            swap(vbubble[poz1],vbubble[poz2]);
+            swap(vinsertion[poz1],vinsertion[poz2]);
+            swap(vselection[poz1],vselection[poz2]);
+            swap(vmerge[poz1],vmerge[poz2]);
+            swap(vquick[poz1],vquick[poz2]);
+            swap(vcounting[poz1],vcounting[poz2]);
+        }
     }
 
 
@@ -83,7 +103,7 @@ int main() {
     end = chrono::high_resolution_clock::now();
     durata = end - start;
     double t_quick = durata.count();
-    
+
     //timp countingsort
     start = chrono::high_resolution_clock::now();
     countingSort(vcounting, n);
@@ -96,8 +116,9 @@ int main() {
     if (tip==1) cout << "Tip lista: aleatoare\n";
     else if (tip==2) cout << "Tip lista: sortata crescator \n";
     else if (tip==3) cout << "Tip lista: sortata descrescator \n";
+    else if (tip==4) cout << "Tip lista: aproape sortata \n";
+    else if (tip==5) cout << "Tip lista: cu multe duplicate \n";
     cout<< "--------------------------------------------------------\n";
-
     cout<< "ALGORITMI O(n^2):\n";
     cout<< "Bubble Sort-timp: " << t_bubble << " ms\n";
     cout<< "Insertion Sort-timp: " << t_insertion << " ms\n";
@@ -110,7 +131,6 @@ int main() {
     cout<< "ALGORITMI O(n+k):\n";
     cout << "Counting Sort-timp: " << t_counting << " ms\n";
 
-    // eliberarea memoriei
     delete[] vbubble;
     delete[] vinsertion;
     delete[] vselection;
@@ -119,3 +139,4 @@ int main() {
     delete[] vcounting;
     return 0;
 }
+
