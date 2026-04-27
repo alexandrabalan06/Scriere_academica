@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iomanip>
 #include <cstdlib>
-#include "sortare.h"
+#include "sortari.h"
 
 using namespace std;
 
